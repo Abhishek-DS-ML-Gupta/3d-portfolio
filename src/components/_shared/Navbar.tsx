@@ -5,7 +5,7 @@ export const Navbar = () => {
   return (
     <header className="header">
       <NavLink to="/">
-        <img src={logo} alt="logo" className="w-18 h-18 object-contain" />
+        <img src={logo} alt="logo" className="w-18 h-12 object-contain" />
       </NavLink>
       <nav className="flex text-lg gap-7 font-medium">
         <NavLink

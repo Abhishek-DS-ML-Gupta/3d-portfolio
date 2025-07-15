@@ -4,13 +4,13 @@ export const AboutIntro = () => {
       <h1 className="head-text">
         Hello I'm{" "}
         <span className="blue-gradient_text font-semibold drop-shadow">
-          Ikram
+          Abhishek
         </span>{" "}
         👋
       </h1>
       <p className="text-slate-500">
         {" "}
-        Software Engineer based in Pakistan, specializing in technical education
+        Generative AI Developer, specializing in technical education
         through hands-on learning and building applications.
       </p>
     </article>
