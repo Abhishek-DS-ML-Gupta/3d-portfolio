@@ -1,10 +1,63 @@
-<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="48" height="48" rx="8.88889" fill="white"/>
-    <path d="M12.74 30H9.38L15.24 16.6H19.52L25.42 30H22L20.74 27.04H14.04L12.74 30ZM16.44 21.42L15.18 24.34H19.56L18.3 21.42L17.48 19.34H17.26L16.44 21.42ZM29.1198 30H26.1198V16.6H29.1198V21.92H36.1198V16.6H39.1198V30H36.1198V24.62H29.1198V30Z" fill="url(#paint0_linear_1545_39)"/>
-    <defs>
-        <linearGradient id="paint0_linear_1545_39" x1="8" y1="35.5" x2="38.0109" y2="10.5484" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#989FFF"/>
-            <stop offset="1" stop-color="#29A2FF"/>
-        </linearGradient>
-    </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" width="600" height="200">
+  <style>
+    /* Modern animation styles */
+    @keyframes subtleScale {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.03); opacity: 0.95; }
+    }
+    @keyframes gradientShift {
+      0% { stop-color: #2563eb; }
+      50% { stop-color: #7c3aed; }
+      100% { stop-color: #2563eb; }
+    }
+    @keyframes dashDraw {
+      0% { stroke-dashoffset: 1000; }
+      100% { stroke-dashoffset: 0; }
+    }
+    
+    .logo-text {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 64px;
+      animation: subtleScale 5s ease-in-out infinite;
+    }
+    
+    .gradient-stop-1 {
+      animation: gradientShift 8s ease infinite;
+    }
+    
+    .gradient-stop-2 {
+      animation: gradientShift 8s ease infinite 2s;
+    }
+    
+    .gradient-stop-3 {
+      animation: gradientShift 8s ease infinite 4s;
+    }
+    
+    .signature-line {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: dashDraw 2s ease-in-out forwards 0.5s;
+    }
+  </style>
+  
+  <!-- Define gradient -->
+  <defs>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" class="gradient-stop-1" stop-color="#2563eb"/>
+      <stop offset="50%" class="gradient-stop-2" stop-color="#7c3aed"/>
+      <stop offset="100%" class="gradient-stop-3" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Main logo text -->
+  <text x="300" y="120" text-anchor="middle" class="logo-text" fill="url(#textGradient)">Abhishek</text>
+  
+  <!-- Professional signature line -->
+  <path class="signature-line" d="M180,150 Q300,180 420,150" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Subtle decorative element -->
+  <circle cx="300" cy="150" r="4" fill="#7c3aed" opacity="0">
+    <animate attributeName="opacity" values="0;0.8;0" dur="4s" repeatCount="indefinite" begin="1s"/>
+  </circle>
 </svg>

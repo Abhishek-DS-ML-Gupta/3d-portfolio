@@ -11,10 +11,10 @@ export const HomeInfo = ({ currentStage }: HomeInfoProps) => {
   if (currentStage === 1)
     content = (
       <h1 className="sm:text-xl sm:leading-snug text-center neo-brutalism-blue py-4 px-8 text-white mx-5">
-        Hi, I'm
-        <span className="font-semibold mx-2 text-white">Ikram</span>
+        Hi, I'm 
+        <span className="font-semibold mx-2 text-white">Abhishek Gupta</span>
         👋
-        <br />A Software Engineer from Pakistan
+        <br />Full Stack Developer
       </h1>
     );
 
