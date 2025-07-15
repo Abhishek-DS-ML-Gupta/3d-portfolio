@@ -5,7 +5,7 @@ Experience the synergy of cutting-edge web technologies with my portfolio websit
 ## Getting Started:
 
 1. Clone the repository: `git clone https://github.com/ikramdeveloper/threejs-portfolio.git`
-2. Navigate to the project directory: `cd threejs-portfolio.git`
+2. Navigate to the project directory: `cd 3d-portfolio.git`
 3. Install dependencies: `npm install`
 4. Set up the required environment variables. Create a .env file in the root directory and add the necessary variables. You can use the .env.example file as a template.
 5. Run the project: `npm run dev`
@@ -47,14 +47,3 @@ Built with the help of this youtube tutorial: [JS Mastery](https://github.com/ad
 
 Contributions are welcome! Feel free to open issues or submit pull requests to improve the project.
 
-## Author Links
-
-👋 Hello, I'm Ikram Ul Haq - Web Developer & Programmer
-
-☕ [Buy Me A Coffee](https://www.buymeacoffee.com/ikramdev)
-
-🚀 Follow Me:
-
-- [Twitter](https://twitter.com/ikramdeveloper)
-- [LinkedIn](https://www.linkedin.com/in/ikramdeveloper/)
-- [StackOverflow](https://stackoverflow.com/users/13859212/ikram-ul-haq)
