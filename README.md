@@ -47,10 +47,6 @@ Built with the help of this youtube tutorial: [JS Mastery](https://github.com/ad
 
 Contributions are welcome! Feel free to open issues or submit pull requests to improve the project.
 
-## License:
-
-This project is licensed under the [MIT License](LICENSE.md).
-
 ## Author Links
 
 👋 Hello, I'm Ikram Ul Haq - Web Developer & Programmer
