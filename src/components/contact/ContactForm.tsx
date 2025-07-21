@@ -17,66 +17,80 @@ export const ContactForm = ({
   const { formRef } = useContact();
 
   return (
-    <section className="flex-1 min-w-[50%] flex flex-col">
-      <h1 className="head-text">Get in Touch</h1>
+    <section className="flex-1 min-w-[50%] flex flex-col px-6 py-10 bg-white rounded-2xl shadow-xl border border-gray-200 transition-all duration-300">
+      <h1 className="text-4xl font-extrabold text-gray-900 mb-10">
+        Get in Touch
+      </h1>
 
       <form
         ref={formRef}
         onSubmit={handleSubmit}
-        className="w-full flex flex-col gap-6 mt-14"
+        className="w-full flex flex-col gap-7"
       >
+        {/* Name */}
         <div className="flex flex-col gap-2">
-          <label htmlFor="name" className="text-black-500 font-semibold">
+          <label htmlFor="name" className="text-gray-700 font-semibold">
             Name
           </label>
           <input
             id="name"
             type="text"
             name="name"
-            placeholder="Your name..."
+            placeholder="John Doe"
             required
             onFocus={handleFocus}
             onBlur={handleBlur}
-            className="input"
+            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 shadow-sm hover:shadow-md"
           />
         </div>
+
+        {/* Email */}
         <div className="flex flex-col gap-2">
-          <label htmlFor="email" className="text-black-500 font-semibold">
+          <label htmlFor="email" className="text-gray-700 font-semibold">
             Email
           </label>
           <input
             id="email"
             type="email"
             name="email"
-            placeholder="Your email..."
+            placeholder="you@example.com"
             required
             onFocus={handleFocus}
             onBlur={handleBlur}
-            className="input"
+            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 shadow-sm hover:shadow-md"
           />
         </div>
+
+        {/* Message */}
         <div className="flex flex-col gap-2">
-          <label htmlFor="message" className="text-black-500 font-semibold">
+          <label htmlFor="message" className="text-gray-700 font-semibold">
             Message
           </label>
           <textarea
             id="message"
             name="message"
-            placeholder="Write your message here..."
+            placeholder="Write your message..."
             required
             onFocus={handleFocus}
             onBlur={handleBlur}
-            className="textarea"
+            rows={5}
+            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 shadow-sm hover:shadow-md resize-none"
           />
         </div>
+
+        {/* Submit */}
         <button
           type="submit"
           disabled={isLoading}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          className="btn"
+          className={`w-full py-3 rounded-xl text-white font-semibold text-lg transition-all duration-200 ${
+            isLoading
+              ? "bg-blue-300 cursor-not-allowed"
+              : "bg-blue-600 hover:bg-blue-700 active:scale-[0.98]"
+          } shadow-md hover:shadow-lg`}
         >
-          {isLoading ? "Sending..." : "Send"}
+          {isLoading ? "Sending..." : "Send Message"}
         </button>
       </form>
     </section>
