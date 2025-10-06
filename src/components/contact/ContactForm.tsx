@@ -1,52 +1,25 @@
-import { useState, useRef } from "react";
+import { useContact } from "@/hooks";
 import { FormEventHandler } from "react";
 
-// Replace with your actual Formspree form ID
-const FORMSPREE_FORM_ID = "xpwdvrkz"; // Get this from Formspree.io
-
 interface ContactFormProps {
-  handleBlur: () => void;
-  handleFocus: () => void;
+  // You can keep these props if needed for other purposes
+  // or remove them if they're not used elsewhere
+  handleBlur?: () => void;
+  handleFocus?: () => void;
+  handleSubmit?: FormEventHandler;
+  isLoading?: boolean;
 }
 
-export const ContactForm = ({
-  handleBlur,
-  handleFocus,
-}: ContactFormProps) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const formRef = useRef<HTMLFormElement>(null);
-
-  const handleSubmit: FormEventHandler = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      const formData = new FormData(formRef.current!);
-      
-      // Send form data to Formspree
-      const response = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
-        method: "POST",
-        body: formData,
-        headers: {
-          Accept: "application/json",
-        },
-      });
-
-      if (response.ok) {
-        // Reset form on success
-        formRef.current?.reset();
-        alert("Message sent successfully! I'll get back to you soon.");
-      } else {
-        const errorData = await response.json();
-        alert(`Error: ${errorData.error || "Something went wrong"}`);
-      }
-    } catch (error) {
-      console.error("Form submission error:", error);
-      alert("Network error. Please try again later.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+export const ContactForm = (props: ContactFormProps) => {
+  // Use the hook
+  const {
+    formRef,
+    currentAnimation,
+    handleFocus,
+    handleBlur,
+    handleSubmit,
+    isLoading,
+  } = useContact();
 
   return (
     <section className="flex-1 min-w-[50%] flex flex-col px-6 py-10 bg-white rounded-2xl shadow-xl border border-gray-200 transition-all duration-300">
@@ -59,7 +32,7 @@ export const ContactForm = ({
         onSubmit={handleSubmit}
         className="w-full flex flex-col gap-7"
       >
-        {/* Name */}
+        {/* Your form fields remain the same */}
         <div className="flex flex-col gap-2">
           <label htmlFor="name" className="text-gray-700 font-semibold">
             Name
@@ -76,7 +49,6 @@ export const ContactForm = ({
           />
         </div>
 
-        {/* Email */}
         <div className="flex flex-col gap-2">
           <label htmlFor="email" className="text-gray-700 font-semibold">
             Email
@@ -93,7 +65,6 @@ export const ContactForm = ({
           />
         </div>
 
-        {/* Message */}
         <div className="flex flex-col gap-2">
           <label htmlFor="message" className="text-gray-700 font-semibold">
             Message
@@ -110,7 +81,6 @@ export const ContactForm = ({
           />
         </div>
 
-        {/* Submit */}
         <button
           type="submit"
           disabled={isLoading}
