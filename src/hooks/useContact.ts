@@ -1,6 +1,8 @@
 import { FormEvent, useRef, useState } from "react";
-import { sendEmail } from "@/services";
 import { toast } from "react-toastify";
+
+// Replace with your actual Formspree form ID
+const FORMSPREE_FORM_ID = "xpwdvrkz"; // Get this from Formspree.io
 
 export const useContact = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -21,16 +23,32 @@ export const useContact = () => {
     setCurrentAnimation("hit");
 
     try {
-      await sendEmail(formRef.current!);
-      toast("Thanks for your message 😃", {
-        type: "success",
+      // Get form data
+      const formData = new FormData(formRef.current!);
+      
+      // Send form data to Formspree
+      const response = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
       });
 
-      formRef.current?.reset();
+      if (response.ok) {
+        toast("Thanks for your message 😃", {
+          type: "success",
+        });
 
-      setTimeout(() => {
-        setCurrentAnimation("idle");
-      }, 4000);
+        formRef.current?.reset();
+
+        setTimeout(() => {
+          setCurrentAnimation("idle");
+        }, 4000);
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to send message");
+      }
     } catch (err) {
       console.log("error", err);
       setCurrentAnimation("idle");
