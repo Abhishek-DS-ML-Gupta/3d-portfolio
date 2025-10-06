@@ -1,20 +1,52 @@
-import { useContact } from "@/hooks";
+import { useState, useRef } from "react";
 import { FormEventHandler } from "react";
+
+// Replace with your actual Formspree form ID
+const FORMSPREE_FORM_ID = "xpwdvrkz"; // Get this from Formspree.io
 
 interface ContactFormProps {
   handleBlur: () => void;
   handleFocus: () => void;
-  handleSubmit: FormEventHandler;
-  isLoading: boolean;
 }
 
 export const ContactForm = ({
   handleBlur,
   handleFocus,
-  handleSubmit,
-  isLoading,
 }: ContactFormProps) => {
-  const { formRef } = useContact();
+  const [isLoading, setIsLoading] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const handleSubmit: FormEventHandler = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const formData = new FormData(formRef.current!);
+      
+      // Send form data to Formspree
+      const response = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        // Reset form on success
+        formRef.current?.reset();
+        alert("Message sent successfully! I'll get back to you soon.");
+      } else {
+        const errorData = await response.json();
+        alert(`Error: ${errorData.error || "Something went wrong"}`);
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      alert("Network error. Please try again later.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <section className="flex-1 min-w-[50%] flex flex-col px-6 py-10 bg-white rounded-2xl shadow-xl border border-gray-200 transition-all duration-300">
